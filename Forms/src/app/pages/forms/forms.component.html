@@ -1,0 +1,99 @@
+<h1 class="text-center text-black my-3">Effettua la registrazione</h1>
+<form class="mx-5" [formGroup]="form">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Nome</label>
+    <input
+      type="text"
+      formControlName="nome"
+      class="form-control"
+      aria-describedby="emailHelp"
+    />
+    <span *ngIf="isInvalidTouched('nome')">Inserisci un nome</span>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Cognome</label>
+    <input
+      type="text"
+      formControlName="cognome"
+      class="form-control"
+      aria-describedby="emailHelp"
+    />
+    <span *ngIf="isInvalidTouched('cognome')">Inserisci un cognome</span>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Password</label>
+    <input
+      type="password"
+      formControlName="password"
+      class="form-control"
+      aria-describedby="emailHelp"
+    />
+    <span *ngIf="isInvalidTouched('password')"
+      >Inserisci una password valida</span
+    >
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Conferma Password</label>
+    <input
+      type="password"
+      formControlName="confermaPassword"
+      class="form-control"
+      aria-describedby="emailHelp"
+    />
+    <span *ngIf="isInvalidTouched('confermaPassword')"
+      >Conferma la tua password</span
+    >
+    <span *ngIf="isPasswordMismatch()">Le password non coincidono</span>
+  </div>
+
+  <div class="form-check">
+    <div *ngFor="let genere of generi">
+      <label class="form-check-label" [for]="genere">{{ genere }}</label>
+      <input
+        formControlName="genere"
+        type="radio"
+        [id]="genere"
+        [value]="genere"
+        class="form-check-input"
+      />
+    </div>
+    <span *ngIf="isInvalidTouched('genere')">Seleziona un genere</span>
+  </div>
+  <div>
+    <label for="exampleInputEmail1" class="form-label"
+      >Inserisci la tua immagine</label
+    >
+    <input
+      formControlName="img"
+      type="file"
+      class="form-control"
+      aria-describedby="emailHelp"
+    />
+    <span *ngIf="isInvalidTouched('img')">Inserisci un file</span>
+  </div>
+  <div>
+    <label for="exampleInputEmail1" class="form-label"
+      >Inserisci la tua biografia</label
+    >
+    <textarea class="form-control" formControlName="textArea"></textarea>
+    <span *ngIf="isInvalidTouched('textArea')">Inserisci una descrizione</span>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Username</label>
+    <input
+      formControlName="Usarname"
+      type="text"
+      class="form-control"
+      aria-describedby="emailHelp"
+    />
+    <span *ngIf="isInvalidTouched('Usarname')">Inserisci un username</span>
+  </div>
+  <button
+    (click)="send()"
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="form.invalid"
+  >
+    Submit
+  </button>
+</form>

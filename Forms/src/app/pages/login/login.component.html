@@ -1,0 +1,38 @@
+<h1 class="text-center text-black my-3">Effettua il login</h1>
+<form (ngSubmit)="submit(f)" #f="ngForm">
+  <div class="mb-3 mx-5">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+      name="email"
+      required
+      ngModel
+      #nome="ngModel"
+    />
+    <span *ngIf="nome.invalid && nome.touched"
+      >Devi inserire una email valida</span
+    >
+  </div>
+  <div class="mb-3 mx-5">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input
+      name="password"
+      type="password"
+      class="form-control"
+      id="exampleInputPassword1"
+      required
+      ngModel
+      #password="ngModel"
+    />
+    <span *ngIf="password.invalid && password.touched"
+      >Devi inserire una password</span
+    >
+  </div>
+
+  <button [disabled]="f.invalid" type="submit" class="btn btn-primary ms-5">
+    Submit
+  </button>
+</form>
